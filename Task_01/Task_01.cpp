@@ -2,13 +2,13 @@
 
 using namespace std;
 
-int inverter(int n) {
-    if (n < 10) {
-        return n;
+int inverter(int n, int resultado = 0) {
+    if (n == 0) {
+        return resultado;
     }
     else {
-        cout << n << " " << n / 10 << " " << n % 10 << endl;
-        return  ( n % 10) + inverter(n / 10);
+        resultado = resultado * 10 + n % 10;
+        return inverter(n / 10, resultado);
     }
 }
 
@@ -25,13 +25,14 @@ int somatorio(int n) {
 //3ª
 
 //4ª
-int imprimir(int n) {
-    if (n == 0) {
-        cout << n;
-        return n;
+void imprimir(int n, int resultado =1) {
+    if (resultado == n) {
+        cout<<resultado;
     }else{
-        
-        cout << imprimir(n--);
+
+        cout << resultado << " ";
+        resultado = resultado++;
+        return imprimir(n, resultado);
     }
 }
 
@@ -46,8 +47,8 @@ int main()
 
 
     //cout<<somatorio(5);
-    //cout << inverter(123);
-    cout << imprimir(123);
+   // cout << inverter(123);
+   imprimir(123);
 
     return 0;
 }
